@@ -1,0 +1,420 @@
+/* amelia-website-3: framed panels on a plum wall, Art Nouveau ornament,
+   and the point / ring / halo progression from the framed paintings */
+
+:root {
+  --plum: #4a1736;
+  --plum-deep: #2e0e22;
+  --cream: #f3ead6;
+  --gold: #cdd16e; /* chartreuse-gold, on plum */
+  --olive-gold: #8f8a2e; /* thin frame lines, on the light field */
+  --field: #ece6cf;
+  --ink: #2a1020;
+  --muted: #5a4450;
+  --vermilion: #9e2f18; /* text */
+  --vermilion-bright: #c0431f; /* frames and emblems */
+  --cobalt: #2f56a8;
+  --display: Fraunces, Georgia, "Times New Roman", serif;
+  --serif: Charter, "Bitstream Charter", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, Cambria, "Times New Roman", serif;
+  --measure: 38rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 4.5rem; /* keep panels clear of the sticky nav */
+}
+
+body {
+  margin: 0;
+  background-color: var(--plum);
+  /* woodblock grain: noise stretched into long horizontal fibres */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.005 0.22' numOctaves='3' seed='7' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.95 0 0 0 0 0.92 0 0 0 0 0.84 0.22 0 0 0 -0.07'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 1.125rem;
+  line-height: 1.7;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Masthead: stamped book-cover frame */
+
+.masthead {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 2.25rem 1.25rem 2rem;
+}
+
+.frame {
+  position: relative;
+  padding: 2.5rem 7.5rem 1.5rem;
+  border: 1.5px solid var(--gold);
+  outline: 1.5px solid var(--gold);
+  outline-offset: 5px;
+  text-align: center;
+}
+
+/* dotted inner border, like the stamped beading on the cover */
+.frame::before {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  border: 2.5px dotted rgb(205 209 110 / 0.7);
+  pointer-events: none;
+}
+
+.vine {
+  position: absolute;
+  top: 0.9rem;
+  bottom: 0.9rem;
+  width: 6.25rem;
+  background: url("vine.svg") no-repeat center / contain;
+}
+
+.vine--left {
+  left: 0.9rem;
+}
+
+.vine--right {
+  right: 0.9rem;
+  transform: scaleX(-1);
+}
+
+.masthead h1 {
+  position: relative;
+  margin: 0;
+  color: var(--cream);
+  font-family: var(--display);
+  font-size: clamp(min(2.2rem, 12vw), 8vw, 4.25rem);
+  font-weight: 800;
+  font-variation-settings: "SOFT" 100, "WONK" 1;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  overflow-wrap: break-word;
+}
+
+.masthead .first {
+  color: var(--gold);
+  font-style: italic;
+  font-weight: 500;
+}
+
+.flourish {
+  display: block;
+  width: 10rem;
+  max-width: 100%;
+  height: 2.1rem;
+  margin: 0.6rem auto 0;
+  background: url("flourish.svg") no-repeat center / contain;
+}
+
+/* plum-and-cream checker, like a tiled floor */
+.checker {
+  height: 1.1rem;
+  background:
+    conic-gradient(var(--plum-deep) 25%, var(--cream) 0 50%, var(--plum-deep) 0 75%, var(--cream) 0)
+    0 0 / 1.1rem 1.1rem;
+  border-block: 1.5px solid var(--plum-deep);
+}
+
+/* Navigation */
+
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--plum-deep);
+  border-bottom: 1.5px solid var(--gold);
+}
+
+.site-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0 1.75rem;
+  margin: 0;
+  padding: 0.25rem 1rem;
+  list-style: none;
+}
+
+.site-nav a {
+  display: inline-block;
+  padding: 0.6rem 0.25rem;
+  color: var(--cream);
+  font-variant: small-caps;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+}
+
+.site-nav a:hover,
+.site-nav a:focus-visible {
+  color: var(--gold);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.3em;
+}
+
+.site-nav a:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* Content: each section is a framed painting on the wall */
+
+main {
+  max-width: calc(var(--measure) + 5rem);
+  margin: 0 auto;
+  padding: 2.75rem 1.25rem 3rem;
+}
+
+.panel {
+  position: relative;
+  padding: 2.25rem 2.5rem 2rem;
+  border: 0.65rem solid var(--vermilion-bright);
+  outline: 1.5px solid var(--gold);
+  outline-offset: 4px;
+  background-color: var(--field);
+  /* faint aged-pigment mottling */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.035' numOctaves='3' seed='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.45 0 0 0 0 0.43 0 0 0 0 0.2 0.35 0 0 0 -0.12'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23m)'/%3E%3C/svg%3E");
+  /* thin double gold rule inside the vermilion border */
+  box-shadow:
+    inset 0 0 0 6px var(--field),
+    inset 0 0 0 7.5px var(--olive-gold),
+    inset 0 0 0 10px var(--field),
+    inset 0 0 0 11.5px var(--olive-gold);
+}
+
+/* Art Nouveau flourish between panels */
+.divider {
+  height: 2.25rem;
+  margin: 1.5rem 0;
+  background:
+    url("flourish.svg") no-repeat center / auto 100%,
+    linear-gradient(var(--gold), var(--gold)) no-repeat left center / calc(50% - 5.5rem) 1.5px,
+    linear-gradient(var(--gold), var(--gold)) no-repeat right center / calc(50% - 5.5rem) 1.5px;
+}
+
+.emblem {
+  display: block;
+  width: 3.25rem;
+  height: 3.25rem;
+  margin: 0 auto 0.6rem;
+}
+
+h2 {
+  margin: 0 0 1.25rem;
+  color: var(--plum);
+  font-family: var(--display);
+  font-size: 2rem;
+  font-style: italic;
+  font-weight: 500;
+  font-variation-settings: "SOFT" 100, "WONK" 1;
+  line-height: 1.15;
+  text-align: center;
+}
+
+.course {
+  margin: -0.85rem 0 1.25rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+  font-style: italic;
+  text-align: center;
+}
+
+h3 {
+  margin: 1.75rem 0 0.4rem;
+  color: var(--vermilion);
+  font-size: 0.95rem;
+  font-weight: 700;
+  font-variant: small-caps;
+  letter-spacing: 0.12em;
+  text-transform: lowercase;
+}
+
+h2 + h3 {
+  margin-top: 0;
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+.panel > :last-child {
+  margin-bottom: 0;
+}
+
+.lede {
+  font-size: 1.25rem;
+  line-height: 1.6;
+}
+
+/* vermilion drop cap in a small stamped double frame */
+.lede::first-letter {
+  float: left;
+  margin: 0.08em 0.16em 0 0;
+  padding: 0.1em 0.14em 0.02em;
+  border: 3px double var(--olive-gold);
+  color: var(--vermilion);
+  font-family: var(--display);
+  font-size: 3.3em;
+  font-weight: 800;
+  font-variation-settings: "SOFT" 100, "WONK" 1;
+  line-height: 0.85;
+}
+
+/* questions marked with small point-and-ring emblems */
+.questions {
+  margin: 1.25rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.questions li {
+  position: relative;
+  margin-bottom: 0.85rem;
+  padding-left: 2rem;
+}
+
+.questions li:last-child {
+  margin-bottom: 0;
+}
+
+.questions li::before {
+  content: "";
+  position: absolute;
+  top: 0.4em;
+  left: 0.15rem;
+  width: 1rem;
+  height: 1rem;
+  border: 1.5px solid var(--ink);
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--ink) 0 18%, var(--vermilion-bright) 21% 48%, var(--field) 51% 62%, var(--cobalt) 65%);
+}
+
+a {
+  color: var(--vermilion);
+}
+
+/* Footer */
+
+footer {
+  background: var(--plum-deep);
+  color: var(--cream);
+  font-size: 0.9rem;
+  font-style: italic;
+  text-align: center;
+}
+
+footer p {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 2rem 1.25rem 2.5rem;
+}
+
+/* Medium screens: slimmer vines so the name has room */
+
+@media (max-width: 44rem) {
+  .frame {
+    padding: 2.25rem 4.75rem 1.25rem;
+  }
+
+  .vine {
+    width: 3.75rem;
+  }
+}
+
+/* Small screens */
+
+@media (max-width: 30rem) {
+  body {
+    font-size: 1.0625rem;
+  }
+
+  .masthead {
+    padding: 1.5rem 1rem 1.5rem;
+  }
+
+  .frame {
+    padding: 1.75rem 3.25rem 1rem;
+  }
+
+  /* sized so "Overstreet" always fits between the vines */
+  .masthead h1 {
+    font-size: min(10vw, 2.4rem);
+  }
+
+  .vine {
+    top: 0.6rem;
+    bottom: 0.6rem;
+    width: 2.6rem;
+  }
+
+  .vine--left {
+    left: 0.6rem;
+  }
+
+  .vine--right {
+    right: 0.6rem;
+  }
+
+  .site-nav ul {
+    gap: 0 0.9rem;
+    padding: 0.1rem 0.5rem;
+  }
+
+  .site-nav a {
+    padding: 0.55rem 0.15rem;
+    font-size: 1rem;
+    letter-spacing: 0.03em;
+  }
+
+  main {
+    padding: 2rem 0.9rem 2.5rem;
+  }
+
+  .panel {
+    padding: 1.75rem 1.4rem 1.6rem;
+    border-width: 0.45rem;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+  }
+
+  .lede {
+    font-size: 1.15rem;
+  }
+}
+
+/* Large text or zoom: the nav wraps, so let it scroll away
+   instead of covering the page */
+
+@media (max-width: 18em) {
+  .site-nav {
+    position: static;
+  }
+
+  html {
+    scroll-padding-top: 1rem;
+  }
+
+  .vine {
+    display: none;
+  }
+
+  .frame {
+    padding-inline: 1rem;
+  }
+}
+
+/* Respect the system "reduce motion" setting */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

@@ -1,0 +1,281 @@
+/* amelia-website-4: a quieter take on version 3 — plum header,
+   cream page, Fraunces name, one small emblem per section */
+
+:root {
+  --plum: #4a1736;
+  --plum-deep: #2e0e22;
+  --cream: #f3ead6;
+  --gold: #cdd16e; /* chartreuse-gold, on plum only */
+  --page: #f6f1e4;
+  --ink: #2a1020;
+  --muted: #5a4450;
+  --vermilion: #9e2f18;
+  --rule: #ddd2bd;
+  --display: Fraunces, Georgia, "Times New Roman", serif;
+  --serif: Charter, "Bitstream Charter", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, Cambria, "Times New Roman", serif;
+  --measure: 38rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 4rem; /* keep headings clear of the sticky nav */
+}
+
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 1.125rem;
+  line-height: 1.7;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Masthead */
+
+.masthead {
+  padding: 3.5rem 1.25rem 2.75rem;
+  background: var(--plum);
+  text-align: center;
+}
+
+.masthead h1 {
+  margin: 0;
+  color: var(--cream);
+  font-family: var(--display);
+  font-size: clamp(min(2.4rem, 12vw), 9vw, 4.25rem);
+  font-weight: 800;
+  font-variation-settings: "SOFT" 100, "WONK" 1;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  overflow-wrap: break-word;
+}
+
+.masthead .first {
+  color: var(--gold);
+  font-style: italic;
+  font-weight: 500;
+}
+
+/* Navigation */
+
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--plum-deep);
+}
+
+.site-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0 1.75rem;
+  margin: 0;
+  padding: 0.25rem 1rem;
+  list-style: none;
+}
+
+.site-nav a {
+  display: inline-block;
+  padding: 0.6rem 0.25rem;
+  color: var(--cream);
+  font-variant: small-caps;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+}
+
+.site-nav a:hover,
+.site-nav a:focus-visible {
+  color: var(--gold);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.3em;
+}
+
+.site-nav a:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* Content */
+
+main {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 0.5rem 1.25rem 1rem;
+}
+
+section {
+  padding: 2.25rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+section:last-child {
+  border-bottom: 0;
+}
+
+h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0 0 1.1rem;
+  color: var(--plum);
+  font-family: var(--display);
+  font-size: 1.85rem;
+  font-style: italic;
+  font-weight: 500;
+  font-variation-settings: "SOFT" 100, "WONK" 1;
+  line-height: 1.15;
+}
+
+.emblem {
+  flex: none;
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+.course {
+  margin: -0.6rem 0 1.25rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+  font-style: italic;
+}
+
+h3 {
+  margin: 1.75rem 0 0.4rem;
+  color: var(--vermilion);
+  font-size: 0.95rem;
+  font-weight: 700;
+  font-variant: small-caps;
+  letter-spacing: 0.12em;
+  text-transform: lowercase;
+}
+
+h2 + h3 {
+  margin-top: 0;
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+section > :last-child {
+  margin-bottom: 0;
+}
+
+.lede {
+  font-size: 1.25rem;
+  line-height: 1.6;
+}
+
+.lede::first-letter {
+  float: left;
+  margin: 0.06em 0.1em 0 0;
+  color: var(--vermilion);
+  font-family: var(--display);
+  font-size: 3.2em;
+  font-weight: 800;
+  font-variation-settings: "SOFT" 100, "WONK" 1;
+  line-height: 0.85;
+}
+
+.questions {
+  margin: 1.25rem 0 0;
+  padding-left: 1.25rem;
+}
+
+.questions li {
+  margin-bottom: 0.75rem;
+  padding-left: 0.3rem;
+}
+
+.questions li:last-child {
+  margin-bottom: 0;
+}
+
+.questions li::marker {
+  color: var(--vermilion);
+}
+
+a {
+  color: var(--vermilion);
+}
+
+/* Footer */
+
+footer {
+  background: var(--plum);
+  color: var(--cream);
+  font-size: 0.9rem;
+  font-style: italic;
+  text-align: center;
+}
+
+footer p {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 1.75rem 1.25rem 2rem;
+}
+
+/* Small screens */
+
+@media (max-width: 30rem) {
+  body {
+    font-size: 1.0625rem;
+  }
+
+  .masthead {
+    padding: 2.5rem 1rem 2rem;
+  }
+
+  .site-nav ul {
+    gap: 0 0.9rem;
+    padding: 0.1rem 0.5rem;
+  }
+
+  .site-nav a {
+    padding: 0.55rem 0.15rem;
+    font-size: 1rem;
+    letter-spacing: 0.03em;
+  }
+
+  section {
+    padding: 1.75rem 0;
+  }
+
+  h2 {
+    font-size: 1.65rem;
+  }
+
+  .lede {
+    font-size: 1.15rem;
+  }
+}
+
+/* Large text or zoom: the nav wraps, so let it scroll away
+   instead of covering the page */
+
+@media (max-width: 18em) {
+  .site-nav {
+    position: static;
+  }
+
+  html {
+    scroll-padding-top: 1rem;
+  }
+}
+
+/* Respect the system "reduce motion" setting */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
