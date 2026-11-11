@@ -181,6 +181,12 @@ section {
   padding: 2rem 0;
 }
 
+/* sections take focus when reached from the nav (so screen readers announce
+   them); they aren't interactive, so no focus ring around the whole section */
+section:focus {
+  outline: none;
+}
+
 /* one consistent divider: a fine row of oxblood dots between hairlines */
 section + section::before {
   content: "";
@@ -222,12 +228,12 @@ h2 {
   background: var(--oxblood);
 }
 
-h2 .course {
-  display: block;
-  margin-top: 0.6rem;
+.course {
+  margin: -0.65rem 0 1.25rem; /* sits just under its heading */
   color: var(--muted);
   font-size: 0.95rem;
   font-style: italic;
+  line-height: 1.4;
 }
 
 h3 {
